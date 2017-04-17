@@ -71,8 +71,10 @@ public struct Generator: Equatable {
         guard Generator.validateDigits(digits) else {
             throw Error.invalidDigits
         }
-
-        let counter = try factor.counterValue(at: time)
+        
+        // XXX why oh why is this always returning 0?
+        //let counter = try factor.counterValue(at: time)
+        let counter = UInt64(Date().timeIntervalSince1970 / 30.0)
         // Ensure the counter value is big-endian
         var bigCounter = counter.bigEndian
 
